@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnPath - Assessment Results</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px 15px;
+            font-family: Arial, sans-serif;
+            background: #081b29;
+            color: white;
+        }
+
+        .card {
+            max-width: 650px;
+            margin: 35px auto;
+            padding: 30px;
+            background: #102c3d;
+            border: 1px solid #29485a;
+            border-radius: 15px;
+        }
+
+        h1, h2 {
+            color: #ff7a00;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 28px;
+        }
+
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff7a00;
+            margin: 15px 0;
+        }
+
+        .skill {
+            background: #081b29;
+            border: 1px solid #29485a;
+            padding: 14px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        p {
+            color: #c8d5df;
+            line-height: 1.6;
+        }
+
+        .recommendation {
+            background: #081b29;
+            padding: 16px;
+            border-left: 4px solid #ff7a00;
+            border-radius: 6px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 11px 16px;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .secondary {
+            background: #29485a;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <h1>Your Assessment Results</h1>
+
+        <div class="score">{{ result.total_score }}/9</div>
+        <p>Your current self-assessed skill score</p>
+
+        <h2>Skill Breakdown</h2>
+
+        <div class="skill">
+            Python Programming: {{ result.python_score }}/3
+        </div>
+
+        <div class="skill">
+            SQL and Database Skills: {{ result.sql_score }}/3
+        </div>
+
+        <div class="skill">
+            Problem Solving: {{ result.problem_solving_score }}/3
+        </div>
+
+        <h2>Recommended Next Step</h2>
+
+        <div class="recommendation">
+            {% if result.total_score <= 3 %}
+                <p>
+                    Start with programming fundamentals, basic SQL queries,
+                    and beginner problem-solving exercises.
+                </p>
+            {% elif result.total_score <= 6 %}
+                <p>
+                    Strengthen your intermediate skills by practicing
+                    coding problems, SQL queries, and small projects.
+                </p>
+            {% else %}
+                <p>
+                    Challenge yourself with advanced coding problems
+                    and build a complete portfolio project.
+                </p>
+            {% endif %}
+        </div>
+
+        <div class="buttons">
+            <a href="{{ url_for('assessment') }}" class="button">
+                Retake Assessment
+            </a>
+
+            <a href="{{ url_for('dashboard') }}"
+               class="button secondary">
+                Back to Dashboard
+            </a>
+        </div>
+    </main>
+</body>
+</html>

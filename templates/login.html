@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnPath | Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #081b29;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #102c3d;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #ff7a00;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        header nav a:hover {
+            color: #ff7a00;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 35px;
+            background: #102c3d;
+            border: 1px solid #25485b;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: #ff7a00;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #c7d5df;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 16px 0 7px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            background: #081b29;
+            border: 1px solid #365568;
+            border-radius: 7px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff7a00;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            background: #ff7a00;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #e96b00;
+        }
+
+        .messages {
+            margin-top: 15px;
+        }
+
+        .message {
+            padding: 10px;
+            background: #173b50;
+            border: 1px solid #ff7a00;
+            border-radius: 7px;
+            color: #ffd1a3;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .register-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #c7d5df;
+            font-size: 14px;
+        }
+
+        .register-text a {
+            color: #ff9b42;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #102c3d;
+            padding: 18px;
+            text-align: center;
+            color: #aebfcb;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/" class="logo">LearnPath.</a>
+        <nav><a href="/">← Back to Home</a></nav>
+    </header>
+
+    <main>
+        <section class="login-card">
+            <h1>Welcome <span class="highlight">Back!</span></h1>
+            <p class="subtitle">Continue your learning journey.</p>
+
+            <div class="messages">
+                {% with messages = get_flashed_messages() %}
+                    {% for message in messages %}
+                        <p class="message">{{ message }}</p>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+
+            <form action="/login" method="POST">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your registered email"
+                    required
+                >
+
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit" class="submit-button">
+                    Login →
+                </button>
+            </form>
+
+            <p class="register-text">
+                New to LearnPath?
+                <a href="/register">Create an account</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 LearnPath. Learn Today. Lead Tomorrow.
+    </footer>
+
+</body>
+</html>

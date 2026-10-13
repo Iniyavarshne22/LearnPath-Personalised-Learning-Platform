@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Assessment | LearnPath</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #081b29;
+            color: #fff;
+            padding: 30px 16px;
+        }
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+            background: #102c3d;
+            padding: 30px;
+            border-radius: 16px;
+        }
+        h1 { color: #ff7a00; }
+        p { color: #c8d5df; line-height: 1.6; }
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: bold;
+        }
+        select, button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        select {
+            background: #081b29;
+            color: white;
+            border: 1px solid #486273;
+        }
+        button {
+            margin-top: 25px;
+            background: #ff7a00;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover { background: #e66d00; }
+        a { color: #ff7a00; }
+        .message { color: #ffd2a6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skill Assessment</h1>
+        <p>Answer honestly to understand your current skill level.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="/assessment">
+            <label for="python_score">Python Programming</label>
+            <select id="python_score" name="python_score" required>
+                <option value="0">Beginner</option>
+                <option value="1">Basic</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+            </select>
+
+            <label for="sql_score">SQL and Database Skills</label>
+            <select id="sql_score" name="sql_score" required>
+                <option value="0">Beginner</option>
+                <option value="1">Basic</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+            </select>
+
+            <label for="problem_solving_score">Problem Solving</label>
+            <select id="problem_solving_score"
+                    name="problem_solving_score" required>
+                <option value="0">Beginner</option>
+                <option value="1">Basic</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+            </select>
+
+            <button type="submit">Submit Assessment</button>
+        </form>
+
+        <p><a href="/dashboard">Back to Dashboard</a></p>
+    </div>
+</body>
+</html>

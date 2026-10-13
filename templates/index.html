@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnPath | Personalized Learning</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #081b29;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #102c3d;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            color: #ff7a00;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ff7a00;
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: auto;
+            padding: 90px 25px 65px;
+            text-align: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #173b50;
+            color: #ff9b42;
+            border: 1px solid #ff7a00;
+            padding: 7px 16px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 58px);
+            line-height: 1.2;
+            margin-bottom: 22px;
+        }
+
+        .highlight {
+            color: #ff7a00;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: 0 auto 30px;
+            color: #c7d5df;
+            font-size: 18px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #ff7a00;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            font-weight: bold;
+            margin: 7px;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            background: #e96b00;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            background: transparent;
+            border: 1px solid #ff7a00;
+            color: #ff9b42;
+        }
+
+        .button-outline:hover {
+            background: #173b50;
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 45px 25px 75px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            color: #c7d5df;
+            margin-bottom: 35px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            text-align: left;
+        }
+
+        .card {
+            background: #102c3d;
+            border: 1px solid #25485b;
+            padding: 25px;
+            border-radius: 13px;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            border-color: #ff7a00;
+            transform: translateY(-4px);
+        }
+
+        .card .icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #ff9b42;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #c7d5df;
+        }
+
+        .cta {
+            max-width: 1000px;
+            margin: 0 auto 70px;
+            padding: 45px 25px;
+            text-align: center;
+            background: #102c3d;
+            border: 1px solid #25485b;
+            border-radius: 16px;
+        }
+
+        .cta p {
+            color: #c7d5df;
+            margin: 12px 0 20px;
+        }
+
+        footer {
+            background: #102c3d;
+            padding: 22px;
+            text-align: center;
+            color: #aebfcb;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding-top: 60px;
+            }
+
+            .section h2 {
+                font-size: 27px;
+            }
+
+            .cta {
+                margin: 0 15px 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">LearnPath.</div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="#features">Features</a>
+            <a href="/register">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <span class="tag">YOUR PERSONALIZED LEARNING COMPANION</span>
+
+            <h1>
+                Build Your Skills.<br>
+                <span class="highlight">Shape Your Future.</span>
+            </h1>
+
+            <p>
+                LearnPath helps you identify your skill gaps, choose your
+                career goal, and follow a personalized learning roadmap
+                designed to move you closer to your dream job.
+            </p>
+
+            <a class="button" href="/register">Get Started →</a>
+            <a class="button button-outline" href="#features">Explore Features</a>
+        </section>
+
+        <section class="section" id="features">
+            <h2>Everything You Need to Grow</h2>
+
+            <p class="section-description">
+                A simple platform to plan, learn, and track your progress.
+            </p>
+
+            <div class="cards">
+                <article class="card">
+                    <div class="icon">🎯</div>
+                    <h3>Career Goals</h3>
+                    <p>
+                        Choose a career path such as Python Developer,
+                        Java Developer, or Full-Stack Developer.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">📝</div>
+                    <h3>Skill Assessment</h3>
+                    <p>
+                        Evaluate your current skills and identify areas
+                        where you need more practice.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🗺️</div>
+                    <h3>Learning Roadmap</h3>
+                    <p>
+                        Follow an organized learning plan with topics
+                        and resources matched to your career goal.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">📈</div>
+                    <h3>Progress Tracking</h3>
+                    <p>
+                        Track completed topics and monitor your learning
+                        progress as you develop your skills.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Create your account and take the first step toward your career.</p>
+            <a class="button" href="/register">Create Your Account</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 LearnPath. Learn Today. Lead Tomorrow.</p>
+    </footer>
+
+</body>
+</html>

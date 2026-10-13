@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnPath - Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #081b29;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #102c3d;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff7a00;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .logout {
+            background: #ff7a00;
+            padding: 9px 15px;
+            border-radius: 6px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .welcome {
+            margin-bottom: 28px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .orange {
+            color: #ff7a00;
+        }
+
+        .muted {
+            color: #c8d5df;
+        }
+
+        .card {
+            background: #102c3d;
+            border: 1px solid #29485a;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #ff7a00;
+            margin-bottom: 16px;
+            font-size: 22px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .profile-item {
+            background: #081b29;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-item p {
+            color: #c8d5df;
+            font-size: 14px;
+        }
+
+        .profile-item strong {
+            display: block;
+            margin-top: 5px;
+        }
+
+        .progress-heading {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 12px;
+        }
+        
+.progress-bar {
+    height: 12px;
+    width: 100%;
+    background: #29485a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #ff7a00;
+    border-radius: 10px;
+}
+
+
+        .roadmap-grid,
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .roadmap-item,
+        .tool-card {
+            background: #102c3d;
+            border: 1px solid #29485a;
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #ff7a00;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .roadmap-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .roadmap-item p,
+        .tool-card p {
+            color: #c8d5df;
+            margin-bottom: 18px;
+        }
+
+        .roadmap-item label {
+            display: block;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #ff7a00;
+            margin-right: 8px;
+        }
+
+        .tool-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .tool-card h3 {
+            color: #ff7a00;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #ff7a00;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .button:hover,
+        .logout:hover {
+            background: #e66d00;
+        }
+
+        .message {
+            background: #102c3d;
+            border-left: 4px solid #ff7a00;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #c8d5df;
+            margin-top: 35px;
+            border-top: 1px solid #29485a;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 92%;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+
+            header {
+                padding: 16px 4%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">LearnPath</div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>
+            Welcome back,
+            <span class="orange">{{ student.name }}</span>!
+        </h1>
+
+        <p class="muted">
+            Continue learning and move closer to your career goal.
+        </p>
+    </section>
+
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <section class="card">
+        <h2>My Profile</h2>
+
+        <div class="profile-grid">
+            <div class="profile-item">
+                <p>Student Name</p>
+                <strong>{{ student.name }}</strong>
+            </div>
+
+            <div class="profile-item">
+                <p>Email Address</p>
+                <strong>{{ student.email }}</strong>
+            </div>
+
+            <div class="profile-item">
+                <p>Career Goal</p>
+                <strong>{{ student.career_goal }}</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>My Learning Progress</h2>
+
+        <div class="progress-heading">
+            <strong>Overall Progress</strong>
+            <strong class="orange">{{ progress }}%</strong>
+        </div>
+
+       
+<div class="progress-bar"
+     role="progressbar"
+     aria-valuemin="0"
+     aria-valuemax="100"
+     aria-valuenow="{{ progress }}">
+
+    <div class="progress-fill"
+         data-progress="{{ progress }}">
+    </div>
+</div>
+
+
+        <p class="muted" style="margin-top: 12px;">
+            Complete roadmap topics to improve your learning progress.
+        </p>
+    </section>
+
+    <section>
+        <h2>Your Learning Roadmap</h2>
+
+        <div class="roadmap-grid">
+            {% for topic in roadmap %}
+                <article class="roadmap-item">
+                    <div class="number">{{ loop.index }}</div>
+
+                    <h3>{{ topic }}</h3>
+
+                    <p>
+                        Study this topic, practice the concepts,
+                        and apply your knowledge in a project.
+                    </p>
+
+                    <form method="POST"
+                          action="{{ url_for('update_learning_progress') }}">
+
+                        <input type="hidden"
+                               name="topic"
+                               value="{{ topic }}">
+
+                        <label>
+                            <input type="checkbox"
+                                   name="completed"
+                                   value="yes"
+                                   onchange="this.form.submit()"
+                                   {% if topic in completed_topics %}checked{% endif %}>
+                            Mark as completed
+                        </label>
+                    </form>
+                </article>
+            {% else %}
+                <p class="muted">No roadmap topics are available yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section style="margin-top: 32px;">
+        <h2>Learning Tools</h2>
+
+        <div class="tools-grid">
+
+            <article class="tool-card">
+                <div class="tool-icon">📝</div>
+
+                <h3>Skill Assessment</h3>
+
+                <p>
+                    Assess your programming, database, and
+                    problem-solving skills.
+                </p>
+
+                <a href="{{ url_for('assessment') }}" class="button">
+                    Take Assessment
+                </a>
+            </article>
+
+            <article class="tool-card">
+                <div class="tool-icon">📊</div>
+
+                <h3>Assessment Results</h3>
+
+                <p>
+                    View your latest assessment score and
+                    recommended next learning steps.
+                </p>
+
+                <a href="{{ url_for('assessment_result') }}"
+                   class="button">
+                    View Results
+                </a>
+            </article>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    LearnPath &copy; 2026 | Personalized Learning Platform
+</footer>
+
+
+<script>
+    document.querySelectorAll(".progress-fill").forEach(function (bar) {
+        let progress = Number(bar.dataset.progress);
+
+        if (!Number.isFinite(progress)) {
+            progress = 0;
+        }
+
+        progress = Math.max(0, Math.min(100, progress));
+        bar.style.width = progress + "%";
+    });
+</script>
+
+
+</body>
+</html>
